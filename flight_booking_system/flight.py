@@ -8,4 +8,4 @@ class Flight:
         self.bookings = 0
 
     def available_seats(self):
-        return self.capacity - self.booking
+        return self.capacity - self.bookings

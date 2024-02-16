@@ -1,5 +1,5 @@
 import unittest
-from flight_booking_system.services.flight_service import add_flight, update_flight
+
 
 class TestFlightServices(unittest.TestCase):
     def test_add_flight(self):
