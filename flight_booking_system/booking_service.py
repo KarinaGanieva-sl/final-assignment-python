@@ -16,4 +16,17 @@ def book_flight(flight_number, passenger_name):
 
 
 def cancel_booking(booking_id):
-    pass
+    booking_to_cancel = next((b for b in st.session_state['bookings_list'] if b.booking_id == booking_id), None)
+    if booking_to_cancel:
+        st.session_state['bookings_list'].remove(booking_to_cancel)
+        flight = next((f for f in st.session_state['flights_list'] if f.flight_number == booking_to_cancel.flight_number), None)
+        if flight:
+            flight.bookings -= 1
+            st.success(f"Booking {booking_id} cancelled.")
+        else:
+            st.error("Flight not found.")
+    else:
+        st.error(f"Booking ID {booking_id} not found.")
+
+
+

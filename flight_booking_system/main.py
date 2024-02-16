@@ -1,6 +1,6 @@
 import streamlit as st
 
-from booking_service import book_flight
+from booking_service import book_flight, cancel_booking
 from flight_service import add_flight, update_flight
 
 
@@ -48,6 +48,17 @@ def form_to_make_booking():
             show_all_bookings()
 
 
+def form_cancel_booking():
+    st.title("Cancel booking:")
+    with st.form("cancel_booking_form"):
+        st.write("Enter booking id:")
+        booking_id_to_cancel = st.text_input("id")
+
+        submit_cancellation = st.form_submit_button("Cancel")
+        if submit_cancellation:
+            cancel_booking(booking_id_to_cancel)
+
+
 def main():
     st.title("Flight Booking System")
 
@@ -66,6 +77,7 @@ def main():
         update_flight(flight_number_to_update)
 
     form_to_make_booking()
+    form_cancel_booking()
 
 
 if __name__ == "__main__":
